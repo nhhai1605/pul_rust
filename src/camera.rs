@@ -1,8 +1,5 @@
 use crate::my_libs::*;
 
-#[derive(Component)]
-struct Camera;
-
 pub struct CameraPlugin;
 
 impl Plugin for CameraPlugin {
@@ -12,11 +9,5 @@ impl Plugin for CameraPlugin {
 }
 
 fn setup_camera(mut commands: Commands) {
-    commands.spawn((
-        Camera2dBundle {
-            transform: Transform::from_xyz(0.0, 0.0, 0.0),
-            ..default()
-        },
-        Camera,
-    ));
+    commands.spawn(Camera2dBundle::default());
 }

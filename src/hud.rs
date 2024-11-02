@@ -6,9 +6,9 @@ struct FpsRoot;
 #[derive(Component)]
 struct FpsText;
 
-pub struct FpsPlugin;
+pub struct HUDPlugin;
 
-impl Plugin for FpsPlugin {
+impl Plugin for HUDPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Startup, setup_fps_counter);
         app.add_systems(Update, (fps_text_update_system, fps_counter_showhide));
