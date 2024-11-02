@@ -1,4 +1,4 @@
-use bevy::{diagnostic::*, prelude::*};
+use crate::my_libs::*;
 
 #[derive(Component)]
 struct FpsRoot;
@@ -22,23 +22,14 @@ fn setup_fps_counter(mut commands: Commands) {
         .spawn((
             FpsRoot,
             NodeBundle {
-                // give it a dark background for readability
-                background_color: BackgroundColor(Color::srgba(0.0, 0.0, 0.0, 0.0)),
-                // make it "always on top" by setting the Z index to maximum
-                // we want it to be displayed over all other UI
+                // background_color: BackgroundColor(Color::srgba(0.0, 0.0, 0.0, 0.0)),
                 z_index: ZIndex::Global(i32::MAX),
                 style: Style {
                     position_type: PositionType::Absolute,
-                    // position it at the top-right corner
-                    // 1% away from the top window edge
                     right: Val::Percent(1.),
                     top: Val::Percent(1.),
-                    // set bottom/left to Auto, so it can be
-                    // automatically sized depending on the text
                     bottom: Val::Auto,
                     left: Val::Auto,
-                    // give it some padding for readability
-                    padding: UiRect::all(Val::Px(4.0)),
                     ..Default::default()
                 },
                 ..Default::default()

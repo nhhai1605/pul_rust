@@ -1,20 +1,12 @@
-use bevy::{
-    prelude::*,
-    sprite::*,
-};
-
-use pul_rust::{
-    fps::FpsPlugin,
-    camera::CameraPlugin
-};
+use pul_rust::my_libs::*;
 
 fn main() {
     App::new()
         .add_plugins((
             DefaultPlugins,
-            Wireframe2dPlugin,
             FpsPlugin,
-            CameraPlugin
+            CameraPlugin,
+            TablePlugin
         ))
         .run();
 }
