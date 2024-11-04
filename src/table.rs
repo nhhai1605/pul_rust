@@ -2,20 +2,13 @@ use crate::my_libs::*;
 pub struct TablePlugin;
 
 #[derive(Component)]
-pub struct Table {
-    pub width: f32,
-    pub height: f32,
-    pub x: f32,
-    pub y: f32,
-    pub color: Color,
-}
+pub struct Table;
 
 #[derive(Component)]
 struct Rotate;
 
 impl Plugin for TablePlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins(Wireframe2dPlugin);
         app.add_systems(Startup, setup);
         app.add_systems(Update, rotate);
     }
@@ -23,8 +16,6 @@ impl Plugin for TablePlugin {
 
 fn setup(
     mut commands: Commands,
-    mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<ColorMaterial>>,
     asset_server: Res<AssetServer>
 ) {
     commands.spawn((
@@ -33,7 +24,10 @@ fn setup(
             transform: Transform::from_xyz(0., 0., 0.).with_scale(Vec3::splat(0.02)),
             ..default()
         },
+        RigidBody::Static,
+        Collider::rectangle(TABLE_WIDTH, TABLE_HEIGHT),
         // Rotate,
+        Table,
         PIXEL_PERFECT_LAYERS
     ));
 }
